@@ -11,10 +11,10 @@ TEST_CASE("Example Test Name - Change me!", "[flag]"){
 	int one = 1;
 
 	// anything that evaluates to false in a REQUIRE block will result in a failing test 
-	REQUIRE(one == 0); // fix me!
+	REQUIRE(one == 1);
 
 	// all REQUIRE blocks must evaluate to true for the whole test to pass
-	REQUIRE(false); // also fix me!
+	REQUIRE(true);
 }
 
 TEST_CASE("Test 2", "[flag]"){
@@ -36,7 +36,52 @@ TEST_CASE("Test 2", "[flag]"){
 
 // you must write 5 unique, meaningful tests for credit on the testing portion of this quiz!
 
+//all values are equal
+TEST_CASE("Function: IQR 6", "[given]") {
+	std::vector<int> v = {5, 5, 5, 5, 5, 5};
+	Node* head = nullptr;
+	for (int x : v) head = insertEnd(head, x);
+
+	REQUIRE(interQuartile(head) == 0.0f);
+}
+
+// positives and negatives
+TEST_CASE("Function: IQR 7", "[given]") {
+	std::vector<int> v = {-5, -1, 0, 0, 1, 9, 10};
+	Node* head = nullptr;
+	for (int x : v) head = insertEnd(head, x);
+
+	REQUIRE(interQuartile(head) == 10.0f);
+}
+
+//only negatives
+TEST_CASE("Function: IQR 8", "[given]") {
+	std::vector<int> v = {-10, -8, -6, -4, -2, 0};
+	Node* head = nullptr;
+	for (int x : v) head = insertEnd(head, x);
+
+	REQUIRE(interQuartile(head) == 6.0f);
+}
+
+//odd length of list
+TEST_CASE("Function: IQR 9", "[given]") {
+	std::vector<int> v = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+	Node* head = nullptr;
+	for (int x : v) head = insertEnd(head, x);
+
+	REQUIRE(interQuartile(head) == 5.0f);
+}
+
+//minimum size od the list
+TEST_CASE("Function: IQR 10", "[given]") {
+	std::vector<int> v = {10, 20, 30, 40};
+	Node* head = nullptr;
+	for (int x : v) head = insertEnd(head, x);
+
+	REQUIRE(interQuartile(head) == 20.0f);
+}
 // the provided tests from edugator are below. Note that you must determine the correct output for the [output_hidden] tests yourself
+//done
 
 TEST_CASE("Function: IQR 1", "[given]") {
 	std::vector<int> v = {2, 4, 4, 5, 6, 7, 8};
@@ -72,13 +117,13 @@ TEST_CASE("Function: IQR 2", "[given]") {
 
 // uncomment these and put the correct values in the REQUIRE blocks
 
-/* TEST_CASE("Function: IQR 3", "[output_hidden]") {
+TEST_CASE("Function: IQR 3", "[output_hidden]") {
 	std::vector<int> v = {1, 8, 15, 43, 82, 101, 110, 2456, 55345, 137556};
 	Node* head = nullptr;
 	for(int i: v)
 		head = insertEnd(head, i);
 
-	REQUIRE(interQuartile(head) == ?);
+	REQUIRE(interQuartile(head) == 2441.00);
 	
     while (head != nullptr) 
     {
@@ -86,15 +131,15 @@ TEST_CASE("Function: IQR 2", "[given]") {
         head = head->next;
         delete temp;
     }
-} */
+}
 
-/* TEST_CASE("Function: IQR 4", "[output_hidden]") {
+TEST_CASE("Function: IQR 4", "[output_hidden]") {
 	std::vector<int> v = {2, 4, 4, 5, 6, 7, 8, 9, 10};
 	Node* head = nullptr;
 	for(int i: v)
 		head = insertEnd(head, i);
 
-	REQUIRE(interQuartile(head) == ?);
+	REQUIRE(interQuartile(head) == 4.50);
 	
     while (head != nullptr) 
     {
@@ -102,15 +147,15 @@ TEST_CASE("Function: IQR 2", "[given]") {
         head = head->next;
         delete temp;
     }
-} */
+}
 
-/* TEST_CASE("Function: IQR 5", "[output_hidden]") {
+TEST_CASE("Function: IQR 5", "[output_hidden]") {
 	std::vector<int> v = {1, 8, 15, 43, 82, 101, 110, 2456, 55345, 137556, 137576};
 	Node* head = nullptr;
 	for(int i: v)
 		head = insertEnd(head, i);
 
-	REQUIRE(interQuartile(head) == ?);
+	REQUIRE(interQuartile(head) == 55330.00);
 	
     while (head != nullptr) 
     {
@@ -118,4 +163,4 @@ TEST_CASE("Function: IQR 2", "[given]") {
         head = head->next;
         delete temp;
     }
-} */
+}

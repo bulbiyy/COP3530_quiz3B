@@ -16,11 +16,10 @@
 
 #include <iostream>
 #include <iomanip>
-
 class Node {
-    public:
-        int value;
-        Node* next = nullptr;
+public:
+    int value;
+    Node* next = nullptr;
 };
 
 Node* insertEnd(Node* head, int key)
@@ -42,5 +41,33 @@ Node* insertEnd(Node* head, int key)
 float interQuartile(Node* head)
 {
     //code here
-    return 0.0;   
+    int n = 0;
+    for (Node* c = head; c != nullptr; c = c->next) n++;
+
+    int lowerStart = 0;
+    int lowerLen   = n / 2;
+    int upperStart = (n + 1) / 2;
+    int upperLen   = n / 2;
+
+    auto getAt = [&](int idx) -> int {
+        Node* c = head;
+        while (idx-- > 0) c = c->next;
+        return c->value;
+    };
+
+    auto medianSeg = [&](int start, int len) -> double {
+        int mid = start + len / 2;
+        if (len % 2 == 1) {
+            return static_cast<double>(getAt(mid));
+        } else {
+            long long a = getAt(mid - 1);
+            long long b = getAt(mid);
+            return (a + b) / 2.0;
+        }
+    };
+
+    double Q1 = medianSeg(lowerStart, lowerLen);
+    double Q3 = medianSeg(upperStart, upperLen);
+
+    return static_cast<float>(Q3 - Q1);
 }
